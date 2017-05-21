@@ -101,8 +101,8 @@ the program waits until all servos have finished moving before moving to the nex
 
 """
 
-import dynamixel
-import packets
+from . import dynamixel
+from . import packets
 import time
 
 NUM_ERROR_ATTEMPTS = 10
@@ -158,12 +158,12 @@ def move_to_vector(ser, vector, verbose = VERBOSE, num_error_attempts = NUM_ERRO
         velocity = vector[i][2]
         
         if verbose:
-            print('Setting angle for {0} to {1}...'.format(id, angle))
+            print(('Setting angle for {0} to {1}...'.format(id, angle)))
         packet = packets.get_write_position_packet(servo_id, angle)
         dynamixel.write_and_get_response_multiple(ser, packet, id, verbose, num_error_attempts)
         
         if verbose:
-            print('Setting velocity for {0} to {1}...'.format(id, velocity))
+            print(('Setting velocity for {0} to {1}...'.format(id, velocity)))
         packet = packets.get_write_velocity_packet(servo_id, velocity)
         dynamixel.write_and_get_response_multiple(ser, packet, id, verbose, num_error_attempts)
         
@@ -197,7 +197,7 @@ def read_position(ser, joints, verbose = VERBOSE, num_error_attempts = NUM_ERROR
     for j in joints:
         
         if verbose:
-            print('Reading initial position for joint {0}...'.format(j))
+            print(('Reading initial position for joint {0}...'.format(j)))
         
         pos = packets.get_read_position_packet(j)
         init_positions.append(pos)

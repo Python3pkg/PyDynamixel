@@ -30,7 +30,7 @@ def grip(ser, joint, incr, limit, velocity, verbose, num_error_attempts):
         torque = resp.data[1] * 256 + resp.data[0]
         
         if verbose:
-            print('Torque: {0}'.format(torque))
+            print(('Torque: {0}'.format(torque)))
 
         # Check the torque. If greater than the limit, return.
         if torque >= limit:
@@ -42,7 +42,7 @@ def grip(ser, joint, incr, limit, velocity, verbose, num_error_attempts):
         # Otherwise, increment the angular position. 
         val += incr
         if verbose:
-            print('Setting val to {0}.'.format(val))
+            print(('Setting val to {0}.'.format(val)))
         
         vector = chain.make_vector([val], [joint], velocity)
         chain.move_to_vector(ser, vector, verbose, num_error_attempts)

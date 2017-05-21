@@ -20,7 +20,7 @@ def display_position(ser, joints, num_error_attempts):
     s = 'Press <ENTER> to display current position. Use q<ENTER> to quit.'
     
     while True:
-        i = raw_input(s)
+        i = input(s)
         if i == 'q':
             sys.exit(0)
         

@@ -118,8 +118,8 @@ This example simply moves a specified servo to a specified position.
 
 import serial
 import struct
-import registers
-import packets
+from . import registers
+from . import packets
 
 # The number of times to attempt to send a packet before raising an Exception.
 NUM_ERROR_ATTEMPTS = 10
@@ -386,7 +386,7 @@ def write_and_get_response_multiple(ser, packet, servo_id = None, verbose = VERB
                 
         except Exception as e:
             if verbose:
-                print('Got exception when waiting for response from {0} on attempt {1}: {2}'.format(servo_id, i, e))
+                print(('Got exception when waiting for response from {0} on attempt {1}: {2}'.format(servo_id, i, e)))
             
     raise Exception('Unable to read response for servo {0}'.format(servo_id))
    
